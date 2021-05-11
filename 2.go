@@ -22,27 +22,36 @@ func main() {
 	//var l2i []int = []int{0}
 	//var l1i []int = []int{9, 9, 9, 9, 9, 9, 9}
 	//var l2i []int = []int{9, 9, 9, 9}
-	var l2t *ListNode = &ListNode{}
-	var l2 *ListNode = l2t
+	//var l2t *ListNode =
+	var l2, l2t *ListNode
 	for _, v := range l2i {
-		a := l2t
-		a.Val = v
-		a.Next = &ListNode{0, nil}
-		l2t = a.Next
+
+		s := &ListNode{v, nil}
+		if l2 == nil {
+			l2 = s
+			l2t = s
+		} else {
+			l2t.Next = s
+			l2t = s
+		}
+
 	}
 
-	var l1t *ListNode = &ListNode{}
-	var l1 *ListNode = l1t
+	var l1, l1t *ListNode
 	for _, v := range l1i {
-		a := l1t
-		a.Val = v
-		a.Next = &ListNode{0, nil}
-		l1t = a.Next
-	}
+		s := &ListNode{v, nil}
+		if l1 == nil {
+			l1 = s
+			l1t = s
+		} else {
+			l1t.Next = s
+			l1t = s
+		}
 
+	}
 	r := addTwoNumbers(l1, l2)
 	for {
-		if r.Next != nil {
+		if r != nil {
 			fmt.Print(r.Val)
 			fmt.Print(" ")
 			r = r.Next
@@ -80,7 +89,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		nextVal = l12Val / 10
 		result.Val = a
 
-		if l1 == nil && l2 == nil && l12Val == 0 {
+		if l1 == nil && l2 == nil && nextVal == 0 {
 			result.Next = nil
 			break
 		} else {
